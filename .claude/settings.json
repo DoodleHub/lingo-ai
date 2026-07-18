@@ -92,10 +92,13 @@
       "Bash(curl -s http://localhost:8081/)",
       "Bash(curl -s http://localhost:8081/ -o /private/tmp/claude-501/-Users-chaochen-Documents-lingo-ai/3869067d-0b0d-427f-9256-7958d571f518/scratchpad/page.html)",
       "Bash(pkill -f \"expo/node_modules/@expo/cli\")",
-      "Bash(jobs -l)"
+      "Bash(jobs -l)",
+      "Bash(mkdir -p /Users/chaochen/Documents/lingo-ai/src/types /Users/chaochen/Documents/lingo-ai/src/data)",
+      "Bash(echo \"EXIT: $?\")"
     ],
     "additionalDirectories": [
-      "/tmp"
+      "/tmp",
+      "/Users/chaochen/Documents/lingo-ai/src/types"
     ]
   },
   "enabledPlugins": {
