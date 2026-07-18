@@ -1,4 +1,28 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(npm ls *)",
+      "Bash(npx tsc *)",
+      "Bash(npm run *)",
+      "Skill(run)",
+      "Skill(run:*)",
+      "Bash(npx expo *)",
+      "Bash(echo \"PID: $!\")",
+      "Bash(curl -s http://localhost:8098)",
+      "Read(//tmp/**)",
+      "Read(//private/tmp/**)",
+      "Bash(command -v chromium-cli)",
+      "Read(//usr/local/bin/**)",
+      "Read(//Users/chaochen/.local/bin/**)",
+      "Bash(npx --yes playwright --version)",
+      "Bash(node screenshot.mjs)",
+      "Bash(npm init *)",
+      "Bash(pkill -f \"expo start --web --port 8098\")",
+      "Bash(lsof -ti:8098)",
+      "Bash(xargs kill -9)",
+      "Bash(rm -f /tmp/expo-start.log /tmp/page.html)"
+    ]
+  },
   "enabledPlugins": {
     "expo@claude-plugins-official": true
   }
