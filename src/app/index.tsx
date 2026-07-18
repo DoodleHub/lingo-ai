@@ -1,4 +1,5 @@
-import { Link } from "expo-router";
+import { useAuth, useUser } from "@clerk/expo";
+import { Link, Redirect } from "expo-router";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 
 const swatches = [
@@ -14,6 +15,12 @@ const swatches = [
 ];
 
 export default function Index() {
+  const { isLoaded, isSignedIn, signOut } = useAuth();
+  const { user } = useUser();
+
+  if (!isLoaded) return null;
+  if (!isSignedIn) return <Redirect href="/onboarding" />;
+
   return (
     <ScrollView
       className="flex-1 bg-background"
@@ -23,6 +30,21 @@ export default function Index() {
       <Text className="text-body-md text-text-secondary">
         Lingo tokens wired up through NativeWind
       </Text>
+
+      <View className="gap-2 rounded-2xl border border-border bg-surface p-4">
+        <Text className="text-h4 text-text-primary">
+          Signed in as {user?.primaryEmailAddress?.emailAddress}
+        </Text>
+        <TouchableOpacity
+          onPress={() => signOut()}
+          className="mt-2 items-center rounded-2xl bg-lingo-deep-purple px-6 py-3"
+          activeOpacity={0.85}
+        >
+          <Text className="font-['Poppins-SemiBold'] text-[16px] text-white">
+            Sign out
+          </Text>
+        </TouchableOpacity>
+      </View>
 
       <Link href="/onboarding" asChild>
         <TouchableOpacity

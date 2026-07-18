@@ -1,3 +1,4 @@
+import { useSignIn } from "@clerk/expo";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
@@ -18,15 +19,52 @@ import { AuthTextField } from "@/components/auth/AuthTextField";
 import { SocialAuthButtons } from "@/components/auth/SocialAuthButtons";
 import { VerificationModal } from "@/components/auth/VerificationModal";
 import { images } from "@/constants/images";
+import { useSocialAuth } from "@/hooks/useSocialAuth";
 
 export default function SignIn() {
   const { width } = useWindowDimensions();
   const mascotSize = width * 0.45;
+  const { signIn } = useSignIn();
+  const { handleSocialAuth } = useSocialAuth();
 
   const [email, setEmail] = useState("");
   const [isVerifying, setIsVerifying] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleVerified = () => {
+  const handleSendCode = async () => {
+    if (!signIn || !email.trim()) return;
+
+    setError(null);
+    setIsSubmitting(true);
+    const { error: sendError } = await signIn.emailCode.sendCode({
+      emailAddress: email.trim(),
+    });
+    setIsSubmitting(false);
+
+    if (sendError) {
+      setError(sendError.longMessage ?? sendError.message);
+      return;
+    }
+
+    setIsVerifying(true);
+  };
+
+  const handleVerified = async (code: string) => {
+    if (!signIn) return;
+
+    const { error: verifyError } = await signIn.emailCode.verifyCode({ code });
+    if (verifyError) {
+      setError(verifyError.longMessage ?? verifyError.message);
+      return;
+    }
+
+    const { error: finalizeError } = await signIn.finalize();
+    if (finalizeError) {
+      setError(finalizeError.longMessage ?? finalizeError.message);
+      return;
+    }
+
     setIsVerifying(false);
     router.replace("/");
   };
@@ -99,9 +137,14 @@ export default function SignIn() {
             />
           </View>
 
+          {error && (
+            <Text className="mt-3 text-body-sm text-error">{error}</Text>
+          )}
+
           <TouchableOpacity
             activeOpacity={0.85}
-            onPress={() => setIsVerifying(true)}
+            onPress={handleSendCode}
+            disabled={isSubmitting}
             className="mt-6 overflow-hidden rounded-full"
           >
             <LinearGradient
@@ -110,12 +153,14 @@ export default function SignIn() {
               end={{ x: 1, y: 0 }}
               style={{ height: 56, alignItems: "center", justifyContent: "center" }}
             >
-              <Text className="text-h4 text-white">Sign In</Text>
+              <Text className="text-h4 text-white">
+                {isSubmitting ? "Sending code..." : "Sign In"}
+              </Text>
             </LinearGradient>
           </TouchableOpacity>
 
           <View className="mt-6">
-            <SocialAuthButtons />
+            <SocialAuthButtons onPressProvider={handleSocialAuth} />
           </View>
         </ScrollView>
 

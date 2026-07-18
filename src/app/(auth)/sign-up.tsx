@@ -1,3 +1,4 @@
+import { useSignUp } from "@clerk/expo";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
@@ -18,16 +19,64 @@ import { AuthTextField } from "@/components/auth/AuthTextField";
 import { SocialAuthButtons } from "@/components/auth/SocialAuthButtons";
 import { VerificationModal } from "@/components/auth/VerificationModal";
 import { images } from "@/constants/images";
+import { useSocialAuth } from "@/hooks/useSocialAuth";
 
 export default function SignUp() {
   const { width } = useWindowDimensions();
   const mascotSize = width * 0.45;
+  const { signUp } = useSignUp();
+  const { handleSocialAuth } = useSocialAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isVerifying, setIsVerifying] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleVerified = () => {
+  const handleCreateAccount = async () => {
+    if (!signUp || !email.trim() || !password) return;
+
+    setError(null);
+    setIsSubmitting(true);
+
+    const { error: passwordError } = await signUp.password({
+      emailAddress: email.trim(),
+      password,
+    });
+    if (passwordError) {
+      setIsSubmitting(false);
+      setError(passwordError.longMessage ?? passwordError.message);
+      return;
+    }
+
+    const { error: sendCodeError } = await signUp.verifications.sendEmailCode();
+    setIsSubmitting(false);
+
+    if (sendCodeError) {
+      setError(sendCodeError.longMessage ?? sendCodeError.message);
+      return;
+    }
+
+    setIsVerifying(true);
+  };
+
+  const handleVerified = async (code: string) => {
+    if (!signUp) return;
+
+    const { error: verifyError } = await signUp.verifications.verifyEmailCode({
+      code,
+    });
+    if (verifyError) {
+      setError(verifyError.longMessage ?? verifyError.message);
+      return;
+    }
+
+    const { error: finalizeError } = await signUp.finalize();
+    if (finalizeError) {
+      setError(finalizeError.longMessage ?? finalizeError.message);
+      return;
+    }
+
     setIsVerifying(false);
     router.replace("/");
   };
@@ -110,9 +159,16 @@ export default function SignUp() {
             />
           </View>
 
+          {error && (
+            <Text className="mt-3 text-body-sm text-error">{error}</Text>
+          )}
+
+          <View nativeID="clerk-captcha" />
+
           <TouchableOpacity
             activeOpacity={0.85}
-            onPress={() => setIsVerifying(true)}
+            onPress={handleCreateAccount}
+            disabled={isSubmitting}
             className="mt-6 overflow-hidden rounded-full"
           >
             <LinearGradient
@@ -121,12 +177,14 @@ export default function SignUp() {
               end={{ x: 1, y: 0 }}
               style={{ height: 56, alignItems: "center", justifyContent: "center" }}
             >
-              <Text className="text-h4 text-white">Sign Up</Text>
+              <Text className="text-h4 text-white">
+                {isSubmitting ? "Creating account..." : "Sign Up"}
+              </Text>
             </LinearGradient>
           </TouchableOpacity>
 
           <View className="mt-6">
-            <SocialAuthButtons />
+            <SocialAuthButtons onPressProvider={handleSocialAuth} />
           </View>
         </ScrollView>
 

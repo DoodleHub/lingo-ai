@@ -73,7 +73,26 @@
       "Bash(xcrun simctl *)",
       "Bash(osascript -e 'tell application \"Simulator\" to get bounds of front window')",
       "Bash(osascript -e 'tell application \"System Events\" to tell process \"Simulator\" to get position of window 1')",
-      "Bash(osascript -e 'tell application \"System Events\" to tell process \"Simulator\" to get size of window 1')"
+      "Bash(osascript -e 'tell application \"System Events\" to tell process \"Simulator\" to get size of window 1')",
+      "Bash(command -v clerk)",
+      "Bash(clerk --version)",
+      "Bash(curl -fsSL https://clerk.com/install)",
+      "Bash(bash)",
+      "Bash(command -v brew)",
+      "Bash(brew install *)",
+      "Bash(clerk auth *)",
+      "Bash(clerk init *)",
+      "Bash(find ~/.agents/skills/clerk-expo -type f | head -50)",
+      "Read(//Users/chaochen/.agents/skills/clerk-expo/**)",
+      "Read(//Users/chaochen/.agents/skills/clerk-expo/references/**)",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d.get\\('exports',{}\\), indent=2\\)\\)\")",
+      "Bash(clerk doctor *)",
+      "Bash(tee /private/tmp/claude-501/-Users-chaochen-Documents-lingo-ai/3869067d-0b0d-427f-9256-7958d571f518/scratchpad/expo-web.log)",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\\\\n\" http://localhost:8081)",
+      "Bash(curl -s http://localhost:8081/)",
+      "Bash(curl -s http://localhost:8081/ -o /private/tmp/claude-501/-Users-chaochen-Documents-lingo-ai/3869067d-0b0d-427f-9256-7958d571f518/scratchpad/page.html)",
+      "Bash(pkill -f \"expo/node_modules/@expo/cli\")",
+      "Bash(jobs -l)"
     ],
     "additionalDirectories": [
       "/tmp"
