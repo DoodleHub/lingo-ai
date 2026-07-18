@@ -20,7 +20,20 @@
       "Bash(pkill -f \"expo start --web --port 8098\")",
       "Bash(lsof -ti:8098)",
       "Bash(xargs kill -9)",
-      "Bash(rm -f /tmp/expo-start.log /tmp/page.html)"
+      "Bash(rm -f /tmp/expo-start.log /tmp/page.html)",
+      "Bash(curl -sI --max-time 10 https://github.com)",
+      "Bash(curl -sI --max-time 10 https://raw.githubusercontent.com/google/fonts/main/ofl/poppins/Poppins-Regular.ttf)",
+      "Bash(file assets/fonts/*.ttf)",
+      "Read(//Users/chaochen/.cache/**)",
+      "Bash(npx playwright *)",
+      "Read(//Users/chaochen/Library/Caches/ms-playwright/**)",
+      "Bash(node /private/tmp/claude-501/-Users-chaochen-Documents-lingo-ai/6416d104-7a87-4d3f-a3ba-224df29212f3/scratchpad/shot.js)",
+      "Bash(find ~/.npm/_npx -maxdepth 4 -name \"playwright\" -type d 2>/dev/null | head -5)",
+      "Read(//Users/chaochen/.npm/_npx/**)",
+      "Bash(NODE_PATH=/Users/chaochen/.npm/_npx/e41f203b7505f1fb/node_modules node /private/tmp/claude-501/-Users-chaochen-Documents-lingo-ai/6416d104-7a87-4d3f-a3ba-224df29212f3/scratchpad/shot.js)",
+      "Bash(pkill -f \"expo start --web\")",
+      "Bash(pkill -f \"port 8088\")",
+      "Bash(lsof -ti:8088)"
     ]
   },
   "enabledPlugins": {
