@@ -1,4 +1,5 @@
-import { ScrollView, Text, View } from "react-native";
+import { Link } from "expo-router";
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 
 const swatches = [
   { label: "Lingo Purple", className: "bg-lingo-purple" },
@@ -14,11 +15,25 @@ const swatches = [
 
 export default function Index() {
   return (
-    <ScrollView className="flex-1 bg-background" contentContainerClassName="gap-6 p-6">
+    <ScrollView
+      className="flex-1 bg-background"
+      contentContainerClassName="gap-6 p-6"
+    >
       <Text className="text-h1 text-text-primary">Design System</Text>
       <Text className="text-body-md text-text-secondary">
         Lingo tokens wired up through NativeWind
       </Text>
+
+      <Link href="/onboarding" asChild>
+        <TouchableOpacity
+          className="items-center rounded-2xl bg-lingo-deep-purple px-6 py-4"
+          activeOpacity={0.85}
+        >
+          <Text className="font-['Poppins-SemiBold'] text-[16px] text-white">
+            View onboarding screen
+          </Text>
+        </TouchableOpacity>
+      </Link>
 
       <View className="gap-3">
         <Text className="text-h3 text-text-primary">Typography</Text>
@@ -26,10 +41,18 @@ export default function Index() {
         <Text className="text-h2 text-text-primary">H2 Section Title</Text>
         <Text className="text-h3 text-text-primary">H3 Card Title</Text>
         <Text className="text-h4 text-text-primary">H4 Subheading</Text>
-        <Text className="text-body-lg text-text-primary">Body Large — important content</Text>
-        <Text className="text-body-md text-text-primary">Body Medium — body text</Text>
-        <Text className="text-body-sm text-text-secondary">Body Small — supporting text</Text>
-        <Text className="text-caption text-text-secondary">CAPTION — LABELS, META TEXT</Text>
+        <Text className="text-body-lg text-text-primary">
+          Body Large — important content
+        </Text>
+        <Text className="text-body-md text-text-primary">
+          Body Medium — body text
+        </Text>
+        <Text className="text-body-sm text-text-secondary">
+          Body Small — supporting text
+        </Text>
+        <Text className="text-caption text-text-secondary">
+          CAPTION — LABELS, META TEXT
+        </Text>
       </View>
 
       <View className="gap-3">
@@ -37,8 +60,12 @@ export default function Index() {
         <View className="flex-row flex-wrap gap-3">
           {swatches.map((swatch) => (
             <View key={swatch.label} className="w-24 gap-1">
-              <View className={`h-16 rounded-2xl border border-border ${swatch.className}`} />
-              <Text className="text-caption text-text-secondary">{swatch.label}</Text>
+              <View
+                className={`h-16 rounded-2xl border border-border ${swatch.className}`}
+              />
+              <Text className="text-caption text-text-secondary">
+                {swatch.label}
+              </Text>
             </View>
           ))}
         </View>
