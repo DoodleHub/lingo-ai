@@ -1,3 +1,4 @@
+import { router } from "expo-router";
 import {
   Image,
   Text,
@@ -79,6 +80,7 @@ export default function Onboarding() {
 
         <TouchableOpacity
           activeOpacity={0.85}
+          onPress={() => router.push("/sign-up")}
           className="h-14 flex-row items-center justify-center rounded-full bg-lingo-deep-purple px-6"
         >
           <Text className="font-['Poppins-SemiBold'] text-[17px] text-white">

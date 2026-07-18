@@ -67,7 +67,13 @@
       "Bash(pkill -f \"metro\")",
       "Bash(rm -f /tmp/diag.js /tmp/test_import.tsx)",
       "Bash(lsof -ti:8099)",
-      "Bash(xargs -r kill)"
+      "Bash(xargs -r kill)",
+      "Bash(timeout 60 bash -c 'until curl -sf http://localhost:8081 >/dev/null; do sleep 2; done')",
+      "Bash(cat /tmp/expo-web.log 2>&1 | tail -50; echo \"---procs---\"; ps aux | grep -i expo | grep -v grep)",
+      "Bash(xcrun simctl *)",
+      "Bash(osascript -e 'tell application \"Simulator\" to get bounds of front window')",
+      "Bash(osascript -e 'tell application \"System Events\" to tell process \"Simulator\" to get position of window 1')",
+      "Bash(osascript -e 'tell application \"System Events\" to tell process \"Simulator\" to get size of window 1')"
     ],
     "additionalDirectories": [
       "/tmp"
