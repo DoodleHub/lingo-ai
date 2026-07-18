@@ -94,7 +94,11 @@
       "Bash(pkill -f \"expo/node_modules/@expo/cli\")",
       "Bash(jobs -l)",
       "Bash(mkdir -p /Users/chaochen/Documents/lingo-ai/src/types /Users/chaochen/Documents/lingo-ai/src/data)",
-      "Bash(echo \"EXIT: $?\")"
+      "Bash(echo \"EXIT: $?\")",
+      "Bash(sips -g pixelWidth -g pixelHeight /Users/chaochen/Documents/lingo-ai/assets/images/earth.png)",
+      "Bash(curl -sf -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:8081)",
+      "Bash(curl -s http://localhost:8081)",
+      "Bash(chromium-cli --help)"
     ],
     "additionalDirectories": [
       "/tmp",
