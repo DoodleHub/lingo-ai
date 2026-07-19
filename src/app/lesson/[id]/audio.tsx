@@ -2,14 +2,26 @@ import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { router, useLocalSearchParams } from "expo-router";
 import { usePostHog } from "posthog-react-native";
-import { useState } from "react";
-import { Alert, Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { useEffect, useState } from "react";
+import {
+  ActivityIndicator,
+  Alert,
+  Image,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { StreamCall, StreamVideo, useCallStateHooks } from "@stream-io/video-react-native-sdk";
 
 import { images } from "@/constants/images";
 import { getLanguageByCode } from "@/data/languages";
 import { getLessonById } from "@/data/lessons";
+import { useAudioCall } from "@/hooks/useAudioCall";
+import type { StreamCallSession } from "@/lib/stream";
 import { colors } from "@/theme";
+import type { Lesson } from "@/types/learning";
 
 const FEEDBACK = [
   { label: "Speaking", value: "Excellent", color: colors.lingoGreen },
@@ -27,21 +39,99 @@ const CARD_SHADOW = {
 
 export default function AudioLesson() {
   const { id } = useLocalSearchParams<{ id: string }>();
-  const posthog = usePostHog();
-
-  const [micOn, setMicOn] = useState(true);
-  const [cameraOn, setCameraOn] = useState(false);
-  const [subtitlesOn, setSubtitlesOn] = useState(true);
-
   const lesson = getLessonById(id);
   if (!lesson) return null;
 
-  const language = getLanguageByCode(lesson.languageCode);
+  return <AudioCallScreen lesson={lesson} />;
+}
 
-  const handleEndCall = () => {
+function AudioCallScreen({ lesson }: { lesson: Lesson }) {
+  const posthog = usePostHog();
+  const { status, client, call, session, errorMessage, endCall, retry } = useAudioCall(lesson.id);
+
+  useEffect(() => {
+    if (status !== "ended") return;
     posthog.capture("audio_lesson_ended", { lesson_id: lesson.id });
-    router.back();
-  };
+    const timeout = setTimeout(() => router.back(), 700);
+    return () => clearTimeout(timeout);
+  }, [status, lesson.id, posthog]);
+
+  if (status === "connecting") {
+    return (
+      <StateScreen>
+        <ActivityIndicator size="large" color={colors.lingoDeepPurple} />
+        <Text className="mt-4 text-h4 text-text-primary">Connecting…</Text>
+        <Text className="mt-1 text-body-sm text-text-secondary">Setting up your AI teacher</Text>
+      </StateScreen>
+    );
+  }
+
+  if (status === "error") {
+    return (
+      <StateScreen>
+        <Ionicons name="alert-circle" size={48} color={colors.error} />
+        <Text className="mt-4 text-h4 text-text-primary">Couldn&apos;t connect</Text>
+        <Text className="mt-1 px-8 text-center text-body-sm text-text-secondary">
+          {errorMessage ?? "Something went wrong while starting this lesson."}
+        </Text>
+        <TouchableOpacity
+          activeOpacity={0.85}
+          onPress={retry}
+          className="mt-6 rounded-full bg-lingo-deep-purple px-6 py-3"
+        >
+          <Text className="text-body-md text-white">Try again</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => router.back()} className="mt-3 px-6 py-2" hitSlop={8}>
+          <Text className="text-body-sm text-text-secondary">Go back</Text>
+        </TouchableOpacity>
+      </StateScreen>
+    );
+  }
+
+  if (status === "ended") {
+    return (
+      <StateScreen>
+        <Ionicons name="checkmark-circle" size={48} color={colors.lingoGreen} />
+        <Text className="mt-4 text-h4 text-text-primary">Call ended</Text>
+        <Text className="mt-1 text-body-sm text-text-secondary">Nice work today!</Text>
+      </StateScreen>
+    );
+  }
+
+  if (!client || !call || !session) return null;
+
+  return (
+    <StreamVideo client={client}>
+      <StreamCall call={call}>
+        <AudioLessonContent lesson={lesson} session={session} onEndCall={endCall} />
+      </StreamCall>
+    </StreamVideo>
+  );
+}
+
+function StateScreen({ children }: { children: React.ReactNode }) {
+  return (
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
+      <View className="flex-1 items-center justify-center px-6">{children}</View>
+    </SafeAreaView>
+  );
+}
+
+function AudioLessonContent({
+  lesson,
+  session,
+  onEndCall,
+}: {
+  lesson: Lesson;
+  session: StreamCallSession;
+  onEndCall: () => void;
+}) {
+  const language = getLanguageByCode(lesson.languageCode);
+  const { useMicrophoneState } = useCallStateHooks();
+  const { isMute, microphone } = useMicrophoneState();
+
+  const [cameraOn, setCameraOn] = useState(false);
+  const [subtitlesOn, setSubtitlesOn] = useState(true);
 
   const handleShowGoal = () => {
     Alert.alert(
@@ -56,7 +146,7 @@ export default function AudioLesson() {
     <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
       <View className="flex-row items-center justify-between px-6 pt-2">
         <TouchableOpacity
-          onPress={() => router.back()}
+          onPress={onEndCall}
           hitSlop={8}
           className="h-10 w-10 items-center justify-center"
         >
@@ -120,9 +210,17 @@ export default function AudioLesson() {
               className="absolute right-4 top-4 h-20 w-16 items-center justify-center rounded-2xl border-2 border-white bg-surface"
               style={CARD_SHADOW}
             >
-              <Ionicons name="person" size={26} color={colors.textSecondary} />
+              {session.userImage ? (
+                <Image
+                  source={{ uri: session.userImage }}
+                  style={{ width: "100%", height: "100%", borderRadius: 14 }}
+                  resizeMode="cover"
+                />
+              ) : (
+                <Ionicons name="person" size={26} color={colors.textSecondary} />
+              )}
               <View className="absolute -bottom-1.5 -right-1.5 h-6 w-6 items-center justify-center rounded-full bg-text-primary">
-                <Ionicons name="videocam-off" size={12} color="#FFFFFF" />
+                <Ionicons name={isMute ? "mic-off" : "mic"} size={12} color="#FFFFFF" />
               </View>
             </View>
 
@@ -163,10 +261,10 @@ export default function AudioLesson() {
             onPress={() => setCameraOn((prev) => !prev)}
           />
           <ControlButton
-            icon={micOn ? "mic" : "mic-off"}
+            icon={isMute ? "mic-off" : "mic"}
             label="Mic"
-            active={micOn}
-            onPress={() => setMicOn((prev) => !prev)}
+            active={!isMute}
+            onPress={() => microphone.toggle()}
           />
           <ControlButton
             icon="language"
@@ -178,7 +276,7 @@ export default function AudioLesson() {
           <View className="items-center">
             <TouchableOpacity
               activeOpacity={0.85}
-              onPress={handleEndCall}
+              onPress={onEndCall}
               className="h-14 w-14 items-center justify-center rounded-full bg-error"
             >
               <MaterialIcons name="call-end" size={24} color="#FFFFFF" />
