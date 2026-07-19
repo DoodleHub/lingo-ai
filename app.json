@@ -8,7 +8,6 @@
     "scheme": "lingoai",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon",
       "bundleIdentifier": "com.chaosauce.lingo-ai"
     },
     "android": {
