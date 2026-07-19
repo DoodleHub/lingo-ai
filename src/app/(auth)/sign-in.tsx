@@ -20,6 +20,7 @@ import { SocialAuthButtons } from "@/components/auth/SocialAuthButtons";
 import { VerificationModal } from "@/components/auth/VerificationModal";
 import { images } from "@/constants/images";
 import { useSocialAuth } from "@/hooks/useSocialAuth";
+import { posthog } from "@/lib/posthog";
 
 export default function SignIn() {
   const { width } = useWindowDimensions();
@@ -64,6 +65,9 @@ export default function SignIn() {
       setError(finalizeError.longMessage ?? finalizeError.message);
       return;
     }
+
+    posthog.identify(email.trim());
+    posthog.capture('user_signed_in', { method: 'email' });
 
     setIsVerifying(false);
     router.replace("/");

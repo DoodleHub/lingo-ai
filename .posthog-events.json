@@ -1,0 +1,37 @@
+[
+  {
+    "event_name": "onboarding_started",
+    "event_description": "User tapped 'Get Started' on the onboarding screen to begin the sign-up flow.",
+    "file": "src/app/onboarding.tsx"
+  },
+  {
+    "event_name": "user_signed_up",
+    "event_description": "User successfully created an account and verified their email.",
+    "file": "src/app/(auth)/sign-up.tsx"
+  },
+  {
+    "event_name": "user_signed_in",
+    "event_description": "User successfully signed in with their email code.",
+    "file": "src/app/(auth)/sign-in.tsx"
+  },
+  {
+    "event_name": "social_auth_started",
+    "event_description": "User initiated authentication via a social provider (Google, Facebook, or Apple).",
+    "file": "src/hooks/useSocialAuth.ts"
+  },
+  {
+    "event_name": "language_selected",
+    "event_description": "User confirmed their target language selection.",
+    "file": "src/app/language-selection.tsx"
+  },
+  {
+    "event_name": "lesson_plan_item_completed",
+    "event_description": "User marked a today's plan item as completed, earning XP.",
+    "file": "src/app/(tabs)/home.tsx"
+  },
+  {
+    "event_name": "continue_learning_tapped",
+    "event_description": "User tapped the 'Continue Learning' card on the home screen.",
+    "file": "src/app/(tabs)/home.tsx"
+  }
+]

@@ -2,6 +2,7 @@ import { useUser } from "@clerk/expo";
 import { router } from "expo-router";
 import { ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { usePostHog } from "posthog-react-native";
 
 import { ContinueLearningCard } from "@/components/home/ContinueLearningCard";
 import { DailyGoalCard } from "@/components/home/DailyGoalCard";
@@ -17,6 +18,7 @@ const CEFR_LEVELS = ["A1", "A2", "B1", "B2", "C1", "C2"];
 
 export default function Home() {
   const { user } = useUser();
+  const posthog = usePostHog();
   const selectedLanguage = useLanguageStore((state) => state.selectedLanguage);
   const streakDays = useProgressStore((state) => state.streakDays);
   const xpToday = useProgressStore((state) => state.xpToday);
@@ -80,14 +82,32 @@ export default function Home() {
             languageName={language.name}
             level={cefrLevel}
             unitOrder={currentUnit.order}
-            onPressContinue={() => router.push("/learn")}
+            onPressContinue={() => {
+              posthog.capture('continue_learning_tapped', {
+                language: selectedLanguage,
+                unit_order: currentUnit.order,
+                cefr_level: cefrLevel,
+              });
+              router.push("/learn");
+            }}
           />
         )}
 
         <TodayPlanCard
           items={todayPlan}
           completedIds={completedPlanItemIds}
-          onToggleItem={(item) => toggleTodayPlanItem(item.id, item.xp)}
+          onToggleItem={(item) => {
+              const isCompleting = !completedPlanItemIds.includes(item.id);
+              if (isCompleting) {
+                posthog.capture('lesson_plan_item_completed', {
+                  item_type: item.type,
+                  item_title: item.title,
+                  xp_earned: item.xp,
+                  language: selectedLanguage,
+                });
+              }
+              toggleTodayPlanItem(item.id, item.xp);
+            }}
           onPressViewAll={() => router.push("/learn")}
         />
       </ScrollView>

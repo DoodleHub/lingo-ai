@@ -9,6 +9,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { images } from "@/constants/images";
+import { posthog } from "@/lib/posthog";
 
 export default function Onboarding() {
   const { width } = useWindowDimensions();
@@ -80,7 +81,10 @@ export default function Onboarding() {
 
         <TouchableOpacity
           activeOpacity={0.85}
-          onPress={() => router.push("/sign-up")}
+          onPress={() => {
+            posthog.capture('onboarding_started');
+            router.push("/sign-up");
+          }}
           className="h-14 flex-row items-center justify-center rounded-full bg-lingo-deep-purple px-6"
         >
           <Text className="font-['Poppins-SemiBold'] text-[17px] text-white">

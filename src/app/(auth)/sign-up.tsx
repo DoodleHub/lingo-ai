@@ -20,6 +20,7 @@ import { SocialAuthButtons } from "@/components/auth/SocialAuthButtons";
 import { VerificationModal } from "@/components/auth/VerificationModal";
 import { images } from "@/constants/images";
 import { useSocialAuth } from "@/hooks/useSocialAuth";
+import { posthog } from "@/lib/posthog";
 
 export default function SignUp() {
   const { width } = useWindowDimensions();
@@ -76,6 +77,11 @@ export default function SignUp() {
       setError(finalizeError.longMessage ?? finalizeError.message);
       return;
     }
+
+    posthog.identify(email.trim(), {
+      $set_once: { first_sign_up_date: new Date().toISOString() },
+    });
+    posthog.capture('user_signed_up', { method: 'email' });
 
     setIsVerifying(false);
     router.replace("/");

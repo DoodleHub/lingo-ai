@@ -2,6 +2,8 @@ import { useSSO } from "@clerk/expo";
 import { router } from "expo-router";
 import { useState } from "react";
 
+import { posthog } from "@/lib/posthog";
+
 type Provider = "google" | "facebook" | "apple";
 
 const strategyByProvider = {
@@ -15,6 +17,7 @@ export function useSocialAuth() {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSocialAuth = async (provider: Provider) => {
+    posthog.capture('social_auth_started', { provider });
     setIsLoading(true);
     try {
       const { createdSessionId, setActive } = await startSSOFlow({
@@ -23,6 +26,7 @@ export function useSocialAuth() {
 
       if (createdSessionId && setActive) {
         await setActive({ session: createdSessionId });
+        posthog.capture('user_signed_in', { method: provider });
         router.replace("/");
       }
     } finally {
