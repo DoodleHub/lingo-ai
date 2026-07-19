@@ -10,7 +10,7 @@ import { HomeHeader } from "@/components/home/HomeHeader";
 import { TodayPlanCard, type TodayPlanItem } from "@/components/home/TodayPlanCard";
 import { getLessonsByUnit } from "@/data/lessons";
 import { getLanguageByCode } from "@/data/languages";
-import { getUnitsByLanguage } from "@/data/units";
+import { getCurrentUnit } from "@/data/units";
 import { useLanguageStore } from "@/store/languageStore";
 import { useProgressStore } from "@/store/progressStore";
 
@@ -29,8 +29,7 @@ export default function Home() {
   if (!selectedLanguage) return null;
 
   const language = getLanguageByCode(selectedLanguage);
-  const units = getUnitsByLanguage(selectedLanguage);
-  const currentUnit = units[units.length - 1];
+  const currentUnit = getCurrentUnit(selectedLanguage);
   const currentLesson = currentUnit ? getLessonsByUnit(currentUnit.id)[0] : undefined;
   const cefrLevel = currentUnit
     ? CEFR_LEVELS[Math.min(Math.floor((currentUnit.order - 1) / 6), CEFR_LEVELS.length - 1)]

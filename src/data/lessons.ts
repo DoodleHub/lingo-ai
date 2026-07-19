@@ -831,6 +831,825 @@ export const lessons: Lesson[] = [
       encouragementPhrases: ["とても良いです！ (Very good!)", "上手です！ (Well done!)"],
     },
   },
+
+  // ─── Korean · Unit 1 · Getting Started ─────────────────────────────────
+  {
+    id: "ko-u1-l1",
+    unitId: "ko-u1",
+    languageCode: "ko",
+    order: 1,
+    title: "Greetings & Introductions",
+    goal: {
+      summary: "Greet someone and introduce yourself in Korean.",
+      objectives: ["Say hello and goodbye", "Introduce yourself by name", "Ask how someone is doing"],
+    },
+    vocabulary: [
+      {
+        id: "ko-u1-l1-v1",
+        term: "안녕하세요 (Annyeonghaseyo)",
+        translation: "Hello",
+        example: "안녕하세요, 저는 아나예요.",
+        exampleTranslation: "Hello, I am Ana.",
+      },
+      {
+        id: "ko-u1-l1-v2",
+        term: "제 이름은...이에요 (Je ireumeun ... ieyo)",
+        translation: "My name is...",
+        example: "제 이름은 민수예요.",
+        exampleTranslation: "My name is Minsu.",
+      },
+      {
+        id: "ko-u1-l1-v3",
+        term: "안녕히 가세요 (Annyeonghi gaseyo)",
+        translation: "Goodbye",
+        example: "안녕히 가세요, 내일 봐요.",
+        exampleTranslation: "Goodbye, see you tomorrow.",
+      },
+    ],
+    phrases: [
+      { id: "ko-u1-l1-p1", text: "이름이 뭐예요? (Ireumi mwoyeyo?)", translation: "What is your name?" },
+      { id: "ko-u1-l1-p2", text: "만나서 반가워요. (Mannaseo bangawoyo.)", translation: "Nice to meet you." },
+    ],
+    activities: [
+      {
+        id: "ko-u1-l1-a1",
+        type: "multiple-choice",
+        prompt: "How do you say 'Hello' in Korean?",
+        options: ["안녕히 가세요", "안녕하세요", "감사합니다"],
+        correctAnswer: "안녕하세요",
+      },
+      {
+        id: "ko-u1-l1-a2",
+        type: "translate",
+        prompt: "Translate: My name is Minsu.",
+        correctAnswer: "제 이름은 민수예요.",
+      },
+    ],
+    aiTeacher: {
+      systemPrompt:
+        "You are a warm, patient Korean teacher speaking with a complete beginner. Speak mostly in simple Korean, translate new words into English, and gently correct pronunciation with encouragement.",
+      openingLine: "안녕하세요! 이름이 뭐예요?",
+      openingLineTranslation: "Hello! What is your name?",
+      focusAreas: ["greetings", "introductions", "pronunciation"],
+      encouragementPhrases: ["잘했어요! (Well done!)", "완벽해요! (Perfect!)"],
+    },
+  },
+  {
+    id: "ko-u1-l2",
+    unitId: "ko-u1",
+    languageCode: "ko",
+    order: 2,
+    title: "Numbers 1-10",
+    goal: {
+      summary: "Count from one to ten in Korean.",
+      objectives: ["Recognize numbers 1-10", "Say your age", "Ask 'how many?'"],
+    },
+    vocabulary: [
+      {
+        id: "ko-u1-l2-v1",
+        term: "하나, 둘, 셋 (hana, dul, set)",
+        translation: "One, two, three",
+        example: "하나, 둘, 셋, 넷, 다섯.",
+        exampleTranslation: "One, two, three, four, five.",
+      },
+      {
+        id: "ko-u1-l2-v2",
+        term: "몇 살이에요? (Myeot sarieyo?)",
+        translation: "How old are you?",
+        example: "저는 스무 살이에요.",
+        exampleTranslation: "I am twenty years old.",
+      },
+    ],
+    phrases: [
+      { id: "ko-u1-l2-p1", text: "몇 개예요? (Myeot gaeyeyo?)", translation: "How many?" },
+    ],
+    activities: [
+      {
+        id: "ko-u1-l2-a1",
+        type: "listening",
+        prompt: "Listen and repeat: 넷, 다섯, 여섯",
+        correctAnswer: "넷, 다섯, 여섯",
+      },
+      {
+        id: "ko-u1-l2-a2",
+        type: "multiple-choice",
+        prompt: "Which number is '열' (yeol)?",
+        options: ["5", "10", "2"],
+        correctAnswer: "10",
+      },
+    ],
+    aiTeacher: {
+      systemPrompt:
+        "You are a friendly Korean teacher helping a beginner practice numbers. Count slowly, repeat numbers when asked, and praise correct answers.",
+      openingLine: "한국어로 숫자를 셀 준비 됐어요?",
+      openingLineTranslation: "Ready to count in Korean?",
+      focusAreas: ["numbers", "listening"],
+      encouragementPhrases: ["잘했어요! (Well done!)", "훌륭해요! (Excellent!)"],
+    },
+  },
+  {
+    id: "ko-u1-l3",
+    unitId: "ko-u1",
+    languageCode: "ko",
+    order: 3,
+    title: "Colors & Objects",
+    goal: {
+      summary: "Name common colors and everyday objects in Korean.",
+      objectives: ["Recognize colors", "Describe an object's color", "Name common objects"],
+    },
+    vocabulary: [
+      {
+        id: "ko-u1-l3-v1",
+        term: "빨간색 (ppalgansaek)",
+        translation: "Red",
+        example: "자동차가 빨간색이에요.",
+        exampleTranslation: "The car is red.",
+      },
+      {
+        id: "ko-u1-l3-v2",
+        term: "파란색 (paransaek)",
+        translation: "Blue",
+        example: "하늘이 파란색이에요.",
+        exampleTranslation: "The sky is blue.",
+      },
+    ],
+    phrases: [
+      { id: "ko-u1-l3-p1", text: "무슨 색이에요? (Museun saegieyo?)", translation: "What color is it?" },
+    ],
+    activities: [
+      {
+        id: "ko-u1-l3-a1",
+        type: "multiple-choice",
+        prompt: "What color is '파란색'?",
+        options: ["Red", "Blue", "Green"],
+        correctAnswer: "Blue",
+      },
+      {
+        id: "ko-u1-l3-a2",
+        type: "translate",
+        prompt: "Translate: The apple is red.",
+        correctAnswer: "사과가 빨간색이에요.",
+      },
+    ],
+    aiTeacher: {
+      systemPrompt:
+        "You are a playful Korean teacher helping a beginner learn colors and objects. Point to everyday things and ask what color they are.",
+      openingLine: "이거 무슨 색이에요?",
+      openingLineTranslation: "What color is this?",
+      focusAreas: ["colors", "vocabulary"],
+      encouragementPhrases: ["잘했어요! (Well done!)", "맞아요! (Correct!)"],
+    },
+  },
+  {
+    id: "ko-u1-l4",
+    unitId: "ko-u1",
+    languageCode: "ko",
+    order: 4,
+    title: "Family & Friends",
+    goal: {
+      summary: "Talk about your family and friends in Korean.",
+      objectives: ["Name family members", "Describe relationships", "Talk about a friend"],
+    },
+    vocabulary: [
+      {
+        id: "ko-u1-l4-v1",
+        term: "가족 (gajok)",
+        translation: "Family",
+        example: "제 가족은 네 명이에요.",
+        exampleTranslation: "My family has four people.",
+      },
+      {
+        id: "ko-u1-l4-v2",
+        term: "제일 친한 친구 (jeil chinhan chingu)",
+        translation: "Best friend",
+        example: "그녀는 제 제일 친한 친구예요.",
+        exampleTranslation: "She is my best friend.",
+      },
+    ],
+    phrases: [
+      { id: "ko-u1-l4-p1", text: "가족이 몇 명이에요? (Gajogi myeot myeongieyo?)", translation: "How many people are in your family?" },
+    ],
+    activities: [
+      {
+        id: "ko-u1-l4-a1",
+        type: "translate",
+        prompt: "Translate: My family has four people.",
+        correctAnswer: "제 가족은 네 명이에요.",
+      },
+      {
+        id: "ko-u1-l4-a2",
+        type: "speaking",
+        prompt: "Describe one member of your family in Korean.",
+        correctAnswer: "제... 은/는...",
+      },
+    ],
+    aiTeacher: {
+      systemPrompt:
+        "You are a friendly Korean teacher helping a beginner talk about their family and friends. Ask about the student's family and encourage full sentences.",
+      openingLine: "가족에 대해 이야기해 주세요.",
+      openingLineTranslation: "Tell me about your family.",
+      focusAreas: ["family vocabulary", "counting people"],
+      encouragementPhrases: ["잘했어요! (Well done!)", "좋아요! (Nice!)"],
+    },
+  },
+  {
+    id: "ko-u1-l5",
+    unitId: "ko-u1",
+    languageCode: "ko",
+    order: 5,
+    title: "At the Café",
+    goal: {
+      summary: "Order food and drinks at a café in Korean.",
+      objectives: ["Order food and drinks", "Ask for the bill", "Understand a waiter's questions"],
+    },
+    vocabulary: [
+      {
+        id: "ko-u1-l5-v1",
+        term: "주세요 (juseyo)",
+        translation: "Please give me",
+        example: "커피 한 잔 주세요.",
+        exampleTranslation: "One coffee, please.",
+      },
+      {
+        id: "ko-u1-l5-v2",
+        term: "계산서 (gyesanseo)",
+        translation: "The bill",
+        example: "계산서 주세요.",
+        exampleTranslation: "The bill, please.",
+      },
+    ],
+    phrases: [
+      { id: "ko-u1-l5-p1", text: "뭐 드시겠어요? (Mwo deusigesseoyo?)", translation: "What would you like to drink?" },
+    ],
+    activities: [
+      {
+        id: "ko-u1-l5-a1",
+        type: "translate",
+        prompt: "Translate: One coffee, please.",
+        correctAnswer: "커피 한 잔 주세요.",
+      },
+      {
+        id: "ko-u1-l5-a2",
+        type: "speaking",
+        prompt: "Order a coffee using 'juseyo'.",
+        correctAnswer: "커피 주세요.",
+      },
+    ],
+    aiTeacher: {
+      systemPrompt:
+        "You are a friendly Korean teacher role-playing as a café worker to help a beginner practice ordering food and drinks. Keep the conversation in simple Korean.",
+      openingLine: "어서 오세요! 뭐 드시겠어요?",
+      openingLineTranslation: "Welcome! What would you like to drink?",
+      focusAreas: ["ordering food", "politeness phrases"],
+      encouragementPhrases: ["잘했어요! (Well done!)", "완벽해요! (Perfect!)"],
+    },
+  },
+
+  // ─── German · Unit 1 · Getting Started ─────────────────────────────────
+  {
+    id: "de-u1-l1",
+    unitId: "de-u1",
+    languageCode: "de",
+    order: 1,
+    title: "Hallo & Auf Wiedersehen",
+    goal: {
+      summary: "Greet someone and say goodbye in German.",
+      objectives: ["Say hello and goodbye", "Introduce yourself by name", "Ask how someone is doing"],
+    },
+    vocabulary: [
+      {
+        id: "de-u1-l1-v1",
+        term: "Hallo",
+        translation: "Hello",
+        example: "Hallo, wie geht's?",
+        exampleTranslation: "Hello, how are you?",
+      },
+      {
+        id: "de-u1-l1-v2",
+        term: "Ich heiße",
+        translation: "My name is",
+        example: "Ich heiße Anna.",
+        exampleTranslation: "My name is Anna.",
+      },
+      {
+        id: "de-u1-l1-v3",
+        term: "Auf Wiedersehen",
+        translation: "Goodbye",
+        example: "Auf Wiedersehen, bis morgen!",
+        exampleTranslation: "Goodbye, see you tomorrow!",
+      },
+    ],
+    phrases: [
+      { id: "de-u1-l1-p1", text: "Wie heißt du?", translation: "What is your name?" },
+      { id: "de-u1-l1-p2", text: "Freut mich.", translation: "Nice to meet you." },
+    ],
+    activities: [
+      {
+        id: "de-u1-l1-a1",
+        type: "multiple-choice",
+        prompt: "How do you say 'Hello' in German?",
+        options: ["Auf Wiedersehen", "Hallo", "Danke"],
+        correctAnswer: "Hallo",
+      },
+      {
+        id: "de-u1-l1-a2",
+        type: "translate",
+        prompt: "Translate: My name is Anna.",
+        correctAnswer: "Ich heiße Anna.",
+      },
+    ],
+    aiTeacher: {
+      systemPrompt:
+        "You are a warm, patient German teacher speaking with a complete beginner. Speak mostly in simple German, translate new words into English, and gently correct pronunciation with encouragement.",
+      openingLine: "Hallo! Wie heißt du?",
+      openingLineTranslation: "Hello! What is your name?",
+      focusAreas: ["greetings", "introductions", "pronunciation"],
+      encouragementPhrases: ["Sehr gut!", "Perfekt!"],
+    },
+  },
+  {
+    id: "de-u1-l2",
+    unitId: "de-u1",
+    languageCode: "de",
+    order: 2,
+    title: "Numbers 1-10",
+    goal: {
+      summary: "Count from one to ten in German.",
+      objectives: ["Recognize numbers 1-10", "Say your age", "Ask 'how many?'"],
+    },
+    vocabulary: [
+      {
+        id: "de-u1-l2-v1",
+        term: "Eins, zwei, drei",
+        translation: "One, two, three",
+        example: "Eins, zwei, drei, vier, fünf.",
+        exampleTranslation: "One, two, three, four, five.",
+      },
+      {
+        id: "de-u1-l2-v2",
+        term: "Wie alt bist du?",
+        translation: "How old are you?",
+        example: "Ich bin zehn Jahre alt.",
+        exampleTranslation: "I am ten years old.",
+      },
+    ],
+    phrases: [
+      { id: "de-u1-l2-p1", text: "Wie viele?", translation: "How many?" },
+    ],
+    activities: [
+      {
+        id: "de-u1-l2-a1",
+        type: "listening",
+        prompt: "Listen and repeat: fünf, sechs, sieben",
+        correctAnswer: "fünf, sechs, sieben",
+      },
+      {
+        id: "de-u1-l2-a2",
+        type: "multiple-choice",
+        prompt: "Which number is 'zehn'?",
+        options: ["5", "10", "2"],
+        correctAnswer: "10",
+      },
+    ],
+    aiTeacher: {
+      systemPrompt:
+        "You are a friendly German teacher helping a beginner practice numbers. Count slowly, repeat numbers when asked, and praise correct answers.",
+      openingLine: "Bist du bereit, auf Deutsch zu zählen?",
+      openingLineTranslation: "Ready to count in German?",
+      focusAreas: ["numbers", "listening"],
+      encouragementPhrases: ["Sehr gut!", "Ausgezeichnet!"],
+    },
+  },
+  {
+    id: "de-u1-l3",
+    unitId: "de-u1",
+    languageCode: "de",
+    order: 3,
+    title: "Colors & Objects",
+    goal: {
+      summary: "Name common colors and everyday objects in German.",
+      objectives: ["Recognize colors", "Describe an object's color", "Name common objects"],
+    },
+    vocabulary: [
+      {
+        id: "de-u1-l3-v1",
+        term: "Rot",
+        translation: "Red",
+        example: "Das Auto ist rot.",
+        exampleTranslation: "The car is red.",
+      },
+      {
+        id: "de-u1-l3-v2",
+        term: "Blau",
+        translation: "Blue",
+        example: "Der Himmel ist blau.",
+        exampleTranslation: "The sky is blue.",
+      },
+    ],
+    phrases: [
+      { id: "de-u1-l3-p1", text: "Welche Farbe ist das?", translation: "What color is it?" },
+    ],
+    activities: [
+      {
+        id: "de-u1-l3-a1",
+        type: "multiple-choice",
+        prompt: "What color is 'blau'?",
+        options: ["Red", "Blue", "Green"],
+        correctAnswer: "Blue",
+      },
+      {
+        id: "de-u1-l3-a2",
+        type: "translate",
+        prompt: "Translate: The apple is red.",
+        correctAnswer: "Der Apfel ist rot.",
+      },
+    ],
+    aiTeacher: {
+      systemPrompt:
+        "You are a playful German teacher helping a beginner learn colors and objects. Point to everyday things and ask what color they are.",
+      openingLine: "Welche Farbe hat dein Hemd?",
+      openingLineTranslation: "What color is your shirt?",
+      focusAreas: ["colors", "vocabulary"],
+      encouragementPhrases: ["Sehr gut!", "Richtig!"],
+    },
+  },
+  {
+    id: "de-u1-l4",
+    unitId: "de-u1",
+    languageCode: "de",
+    order: 4,
+    title: "Family & Friends",
+    goal: {
+      summary: "Talk about your family and friends in German.",
+      objectives: ["Name family members", "Describe relationships", "Talk about a friend"],
+    },
+    vocabulary: [
+      {
+        id: "de-u1-l4-v1",
+        term: "Die Familie",
+        translation: "The family",
+        example: "Meine Familie ist groß.",
+        exampleTranslation: "My family is big.",
+      },
+      {
+        id: "de-u1-l4-v2",
+        term: "Mein bester Freund",
+        translation: "My best friend",
+        example: "Er ist mein bester Freund.",
+        exampleTranslation: "He is my best friend.",
+      },
+    ],
+    phrases: [
+      { id: "de-u1-l4-p1", text: "Wie viele Geschwister hast du?", translation: "How many siblings do you have?" },
+    ],
+    activities: [
+      {
+        id: "de-u1-l4-a1",
+        type: "translate",
+        prompt: "Translate: My family is big.",
+        correctAnswer: "Meine Familie ist groß.",
+      },
+      {
+        id: "de-u1-l4-a2",
+        type: "speaking",
+        prompt: "Describe one member of your family in German.",
+        correctAnswer: "Mein... ist...",
+      },
+    ],
+    aiTeacher: {
+      systemPrompt:
+        "You are a friendly German teacher helping a beginner talk about their family and friends. Ask about the student's family and encourage full sentences.",
+      openingLine: "Erzähl mir von deiner Familie.",
+      openingLineTranslation: "Tell me about your family.",
+      focusAreas: ["family vocabulary", "possessives"],
+      encouragementPhrases: ["Sehr gut!", "Klasse!"],
+    },
+  },
+  {
+    id: "de-u1-l5",
+    unitId: "de-u1",
+    languageCode: "de",
+    order: 5,
+    title: "At the Café",
+    goal: {
+      summary: "Order food and drinks at a café in German.",
+      objectives: ["Order food and drinks", "Ask for the bill", "Understand a waiter's questions"],
+    },
+    vocabulary: [
+      {
+        id: "de-u1-l5-v1",
+        term: "Ich hätte gern",
+        translation: "I would like",
+        example: "Ich hätte gern einen Kaffee, bitte.",
+        exampleTranslation: "I would like a coffee, please.",
+      },
+      {
+        id: "de-u1-l5-v2",
+        term: "Die Rechnung",
+        translation: "The bill",
+        example: "Die Rechnung, bitte.",
+        exampleTranslation: "The bill, please.",
+      },
+    ],
+    phrases: [
+      { id: "de-u1-l5-p1", text: "Was möchten Sie trinken?", translation: "What would you like to drink?" },
+    ],
+    activities: [
+      {
+        id: "de-u1-l5-a1",
+        type: "translate",
+        prompt: "Translate: I would like a coffee, please.",
+        correctAnswer: "Ich hätte gern einen Kaffee, bitte.",
+      },
+      {
+        id: "de-u1-l5-a2",
+        type: "speaking",
+        prompt: "Order a coffee using 'Ich hätte gern...'",
+        correctAnswer: "Ich hätte gern einen Kaffee.",
+      },
+    ],
+    aiTeacher: {
+      systemPrompt:
+        "You are a friendly German teacher role-playing as a café waiter to help a beginner practice ordering food and drinks. Keep the conversation in simple German.",
+      openingLine: "Willkommen! Was möchten Sie trinken?",
+      openingLineTranslation: "Welcome! What would you like to drink?",
+      focusAreas: ["ordering food", "politeness phrases"],
+      encouragementPhrases: ["Sehr gut!", "Perfekt!"],
+    },
+  },
+
+  // ─── Chinese · Unit 1 · Getting Started ────────────────────────────────
+  {
+    id: "zh-u1-l1",
+    unitId: "zh-u1",
+    languageCode: "zh",
+    order: 1,
+    title: "Greetings & Introductions",
+    goal: {
+      summary: "Greet someone and introduce yourself in Chinese.",
+      objectives: ["Say hello and goodbye", "Introduce yourself by name", "Ask how someone is doing"],
+    },
+    vocabulary: [
+      {
+        id: "zh-u1-l1-v1",
+        term: "你好 (Nǐ hǎo)",
+        translation: "Hello",
+        example: "你好，你怎么样？",
+        exampleTranslation: "Hello, how are you?",
+      },
+      {
+        id: "zh-u1-l1-v2",
+        term: "我叫... (Wǒ jiào...)",
+        translation: "My name is...",
+        example: "我叫安娜。",
+        exampleTranslation: "My name is Ana.",
+      },
+      {
+        id: "zh-u1-l1-v3",
+        term: "再见 (Zàijiàn)",
+        translation: "Goodbye",
+        example: "再见，明天见。",
+        exampleTranslation: "Goodbye, see you tomorrow.",
+      },
+    ],
+    phrases: [
+      { id: "zh-u1-l1-p1", text: "你叫什么名字？(Nǐ jiào shénme míngzì?)", translation: "What is your name?" },
+      { id: "zh-u1-l1-p2", text: "很高兴认识你。(Hěn gāoxìng rènshi nǐ.)", translation: "Nice to meet you." },
+    ],
+    activities: [
+      {
+        id: "zh-u1-l1-a1",
+        type: "multiple-choice",
+        prompt: "How do you say 'Hello' in Chinese?",
+        options: ["再见", "你好", "谢谢"],
+        correctAnswer: "你好",
+      },
+      {
+        id: "zh-u1-l1-a2",
+        type: "translate",
+        prompt: "Translate: My name is Ana.",
+        correctAnswer: "我叫安娜。",
+      },
+    ],
+    aiTeacher: {
+      systemPrompt:
+        "You are a warm, patient Chinese teacher speaking with a complete beginner. Speak mostly in simple Mandarin with pinyin support, translate new words into English, and gently correct pronunciation with encouragement.",
+      openingLine: "你好！你叫什么名字？",
+      openingLineTranslation: "Hello! What is your name?",
+      focusAreas: ["greetings", "introductions", "pronunciation"],
+      encouragementPhrases: ["很好！(Very good!)", "完美！(Perfect!)"],
+    },
+  },
+  {
+    id: "zh-u1-l2",
+    unitId: "zh-u1",
+    languageCode: "zh",
+    order: 2,
+    title: "Numbers 1-10",
+    goal: {
+      summary: "Count from one to ten in Chinese.",
+      objectives: ["Recognize numbers 1-10", "Say your age", "Ask 'how many?'"],
+    },
+    vocabulary: [
+      {
+        id: "zh-u1-l2-v1",
+        term: "一，二，三 (yī, èr, sān)",
+        translation: "One, two, three",
+        example: "一，二，三，四，五。",
+        exampleTranslation: "One, two, three, four, five.",
+      },
+      {
+        id: "zh-u1-l2-v2",
+        term: "你几岁？(Nǐ jǐ suì?)",
+        translation: "How old are you?",
+        example: "我十岁。",
+        exampleTranslation: "I am ten years old.",
+      },
+    ],
+    phrases: [
+      { id: "zh-u1-l2-p1", text: "多少个？(Duōshǎo gè?)", translation: "How many?" },
+    ],
+    activities: [
+      {
+        id: "zh-u1-l2-a1",
+        type: "listening",
+        prompt: "Listen and repeat: 五，六，七",
+        correctAnswer: "五，六，七",
+      },
+      {
+        id: "zh-u1-l2-a2",
+        type: "multiple-choice",
+        prompt: "Which number is '十' (shí)?",
+        options: ["5", "10", "2"],
+        correctAnswer: "10",
+      },
+    ],
+    aiTeacher: {
+      systemPrompt:
+        "You are a friendly Chinese teacher helping a beginner practice numbers. Count slowly, repeat numbers when asked, and praise correct answers.",
+      openingLine: "准备好用中文数数了吗？",
+      openingLineTranslation: "Ready to count in Chinese?",
+      focusAreas: ["numbers", "listening"],
+      encouragementPhrases: ["很好！(Very good!)", "太棒了！(Excellent!)"],
+    },
+  },
+  {
+    id: "zh-u1-l3",
+    unitId: "zh-u1",
+    languageCode: "zh",
+    order: 3,
+    title: "Colors & Objects",
+    goal: {
+      summary: "Name common colors and everyday objects in Chinese.",
+      objectives: ["Recognize colors", "Describe an object's color", "Name common objects"],
+    },
+    vocabulary: [
+      {
+        id: "zh-u1-l3-v1",
+        term: "红色 (hóngsè)",
+        translation: "Red",
+        example: "车是红色的。",
+        exampleTranslation: "The car is red.",
+      },
+      {
+        id: "zh-u1-l3-v2",
+        term: "蓝色 (lánsè)",
+        translation: "Blue",
+        example: "天空是蓝色的。",
+        exampleTranslation: "The sky is blue.",
+      },
+    ],
+    phrases: [
+      { id: "zh-u1-l3-p1", text: "这是什么颜色？(Zhè shì shénme yánsè?)", translation: "What color is it?" },
+    ],
+    activities: [
+      {
+        id: "zh-u1-l3-a1",
+        type: "multiple-choice",
+        prompt: "What color is '蓝色'?",
+        options: ["Red", "Blue", "Green"],
+        correctAnswer: "Blue",
+      },
+      {
+        id: "zh-u1-l3-a2",
+        type: "translate",
+        prompt: "Translate: The apple is red.",
+        correctAnswer: "苹果是红色的。",
+      },
+    ],
+    aiTeacher: {
+      systemPrompt:
+        "You are a playful Chinese teacher helping a beginner learn colors and objects. Point to everyday things and ask what color they are.",
+      openingLine: "你的衣服是什么颜色？",
+      openingLineTranslation: "What color is your shirt?",
+      focusAreas: ["colors", "vocabulary"],
+      encouragementPhrases: ["很好！(Very good!)", "对了！(Correct!)"],
+    },
+  },
+  {
+    id: "zh-u1-l4",
+    unitId: "zh-u1",
+    languageCode: "zh",
+    order: 4,
+    title: "Family & Friends",
+    goal: {
+      summary: "Talk about your family and friends in Chinese.",
+      objectives: ["Name family members", "Describe relationships", "Talk about a friend"],
+    },
+    vocabulary: [
+      {
+        id: "zh-u1-l4-v1",
+        term: "家庭 (jiātíng)",
+        translation: "Family",
+        example: "我的家庭有四口人。",
+        exampleTranslation: "My family has four people.",
+      },
+      {
+        id: "zh-u1-l4-v2",
+        term: "最好的朋友 (zuì hǎo de péngyǒu)",
+        translation: "Best friend",
+        example: "她是我最好的朋友。",
+        exampleTranslation: "She is my best friend.",
+      },
+    ],
+    phrases: [
+      { id: "zh-u1-l4-p1", text: "你家有几口人？(Nǐ jiā yǒu jǐ kǒu rén?)", translation: "How many people are in your family?" },
+    ],
+    activities: [
+      {
+        id: "zh-u1-l4-a1",
+        type: "translate",
+        prompt: "Translate: My family has four people.",
+        correctAnswer: "我的家庭有四口人。",
+      },
+      {
+        id: "zh-u1-l4-a2",
+        type: "speaking",
+        prompt: "Describe one member of your family in Chinese.",
+        correctAnswer: "我的...是...",
+      },
+    ],
+    aiTeacher: {
+      systemPrompt:
+        "You are a friendly Chinese teacher helping a beginner talk about their family and friends. Ask about the student's family and encourage full sentences.",
+      openingLine: "跟我说说你的家庭吧。",
+      openingLineTranslation: "Tell me about your family.",
+      focusAreas: ["family vocabulary", "counting people"],
+      encouragementPhrases: ["很好！(Very good!)", "真棒！(Great!)"],
+    },
+  },
+  {
+    id: "zh-u1-l5",
+    unitId: "zh-u1",
+    languageCode: "zh",
+    order: 5,
+    title: "At the Café",
+    goal: {
+      summary: "Order food and drinks at a café in Chinese.",
+      objectives: ["Order food and drinks", "Ask for the bill", "Understand a waiter's questions"],
+    },
+    vocabulary: [
+      {
+        id: "zh-u1-l5-v1",
+        term: "我想要 (Wǒ xiǎng yào)",
+        translation: "I would like",
+        example: "我想要一杯咖啡，谢谢。",
+        exampleTranslation: "I would like a coffee, please.",
+      },
+      {
+        id: "zh-u1-l5-v2",
+        term: "买单 (mǎidān)",
+        translation: "The bill",
+        example: "买单，谢谢。",
+        exampleTranslation: "The bill, please.",
+      },
+    ],
+    phrases: [
+      { id: "zh-u1-l5-p1", text: "您想喝点什么？(Nín xiǎng hē diǎn shénme?)", translation: "What would you like to drink?" },
+    ],
+    activities: [
+      {
+        id: "zh-u1-l5-a1",
+        type: "translate",
+        prompt: "Translate: I would like a coffee, please.",
+        correctAnswer: "我想要一杯咖啡，谢谢。",
+      },
+      {
+        id: "zh-u1-l5-a2",
+        type: "speaking",
+        prompt: "Order a coffee using '我想要...'",
+        correctAnswer: "我想要一杯咖啡。",
+      },
+    ],
+    aiTeacher: {
+      systemPrompt:
+        "You are a friendly Chinese teacher role-playing as a café waiter to help a beginner practice ordering food and drinks. Keep the conversation in simple Mandarin with pinyin support.",
+      openingLine: "欢迎光临！您想喝点什么？",
+      openingLineTranslation: "Welcome! What would you like to drink?",
+      focusAreas: ["ordering food", "politeness phrases"],
+      encouragementPhrases: ["很好！(Very good!)", "完美！(Perfect!)"],
+    },
+  },
 ];
 
 export const getLessonsByUnit = (unitId: string) =>

@@ -41,6 +41,33 @@ export const units: Unit[] = [
     title: "Getting Started",
     description: "Learn the basics of Japanese greetings and introductions.",
   },
+
+  // Korean
+  {
+    id: "ko-u1",
+    languageCode: "ko",
+    order: 1,
+    title: "Getting Started",
+    description: "Learn the basics of Korean greetings, numbers, and everyday life.",
+  },
+
+  // German
+  {
+    id: "de-u1",
+    languageCode: "de",
+    order: 1,
+    title: "Getting Started",
+    description: "Learn the basics of German greetings, numbers, and everyday life.",
+  },
+
+  // Chinese
+  {
+    id: "zh-u1",
+    languageCode: "zh",
+    order: 1,
+    title: "Getting Started",
+    description: "Learn the basics of Chinese greetings, numbers, and everyday life.",
+  },
 ];
 
 export const getUnitsByLanguage = (languageCode: LanguageCode) =>
@@ -50,3 +77,10 @@ export const getUnitsByLanguage = (languageCode: LanguageCode) =>
 
 export const getUnitById = (unitId: string) =>
   units.find((unit) => unit.id === unitId);
+
+// The unit the learner is currently working through — the most recently
+// unlocked unit for their selected language.
+export const getCurrentUnit = (languageCode: LanguageCode) => {
+  const languageUnits = getUnitsByLanguage(languageCode);
+  return languageUnits[languageUnits.length - 1];
+};
