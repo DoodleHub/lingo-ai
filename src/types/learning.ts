@@ -7,6 +7,7 @@ export interface Language {
   flag: string;
   learners: string;
   popular: boolean;
+  greeting: string;
 }
 
 export interface Unit {

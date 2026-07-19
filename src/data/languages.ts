@@ -8,6 +8,7 @@ export const languages: Language[] = [
     flag: "🇪🇸",
     learners: "28.4M learners",
     popular: true,
+    greeting: "Hola",
   },
   {
     code: "fr",
@@ -16,6 +17,7 @@ export const languages: Language[] = [
     flag: "🇫🇷",
     learners: "19.4M learners",
     popular: true,
+    greeting: "Bonjour",
   },
   {
     code: "ja",
@@ -24,6 +26,7 @@ export const languages: Language[] = [
     flag: "🇯🇵",
     learners: "12.7M learners",
     popular: true,
+    greeting: "こんにちは",
   },
   {
     code: "ko",
@@ -32,6 +35,7 @@ export const languages: Language[] = [
     flag: "🇰🇷",
     learners: "9.3M learners",
     popular: true,
+    greeting: "안녕하세요",
   },
   {
     code: "de",
@@ -40,6 +44,7 @@ export const languages: Language[] = [
     flag: "🇩🇪",
     learners: "8.1M learners",
     popular: true,
+    greeting: "Hallo",
   },
   {
     code: "zh",
@@ -48,6 +53,7 @@ export const languages: Language[] = [
     flag: "🇨🇳",
     learners: "7.4M learners",
     popular: true,
+    greeting: "你好",
   },
 ];
 
