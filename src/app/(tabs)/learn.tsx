@@ -56,7 +56,7 @@ export default function Learn() {
       language: selectedLanguage,
       status,
     });
-    router.push(`/lesson/${lessonId}`);
+    router.push(`/lesson/${lessonId}/audio`);
   };
 
   return (
